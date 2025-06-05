@@ -1,25 +1,20 @@
-// .vscode/tasks.json
 {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "build and run",
-        "type": "shell",
-        "command": "g++",
-        "args": [
-          "${file}",
-          "-o",
-          "${fileDirname}/${fileBasenameNoExtension}",
-          "&&",
-          "${fileDirname}/${fileBasenameNoExtension}"
-        ],
-        "group": {
-          "kind": "build",
-          "isDefault": true
-        },
-        "problemMatcher": ["$gcc"],
-        "detail": "Compiles and runs a C++ file"
-      }
-    ]
-  }
-  
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build and run all",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "g++ ${workspaceFolder}/*.cpp -o ${workspaceFolder}/output && ${workspaceFolder}/output"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$gcc"],
+      "detail": "Compile all cpp files and run output executable in current folder"
+    }
+  ]
+}
