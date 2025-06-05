@@ -47,7 +47,7 @@ int Player::getCatchBagSize()
     return catchBag.size();
 }
 
-void Player::sellFish(int index)
+void Player::sellOneFish(int index)
 {
     if (index >= 0 && index < catchBag.size())
     {

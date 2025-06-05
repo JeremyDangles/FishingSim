@@ -3,28 +3,23 @@
 #include "Fishing.h"
 #include <string>
 #include <stdio.h>
+#include "raylib.h"
+
+Color background = { 0, 50, 80, 255};
 
 int main()
 {
-    Player player(std::string("Pete"), 0);
+    InitWindow(800, 600, "FishingSim");
+    SetTargetFPS(60);
 
-    for (int i = 0; i < 1000000; i++)
+    while (!WindowShouldClose())
     {
-     player.addFish(catchRandomFish());
+        BeginDrawing();
+            ClearBackground(background);
+            DrawText("TEST", 360, 300, 30, WHITE);
+        EndDrawing();
     }
 
-    printf("\n");
-
-    player.display();
-    
-    printf("\n");
-
-    int initialMoney = player.getMoney();
-    for (int i = player.getCatchBagSize() - 1; i >= 0; i--)
-    {
-        player.sellFish(i);
-    }
-
-    printf("Total Profit: $%i\n\n", (player.getMoney() - initialMoney));
-    player.display();
+    CloseWindow();
+    return 0;
 }

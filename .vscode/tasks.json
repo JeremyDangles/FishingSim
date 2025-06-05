@@ -4,17 +4,27 @@
     {
       "label": "build and run all",
       "type": "shell",
-      "command": "bash",
+      "command": "g++",
       "args": [
-        "-c",
-        "g++ ${workspaceFolder}/*.cpp -o ${workspaceFolder}/FishingSim && ${workspaceFolder}/FishingSim"
+        "${workspaceFolder}/*.cpp",
+        "-o",
+        "${workspaceFolder}/FishingSim",
+        "-std=c++17",
+        "-I/usr/local/include",
+        "-L/usr/local/lib",
+        "-lraylib",
+        "-I/opt/homebrew/include",
+        "-L/opt/homebrew/lib",
+        "-framework", "OpenGL",
+        "-framework", "Cocoa",
+        "-framework", "IOKit",
+        "-framework", "CoreAudio"
       ],
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "problemMatcher": ["$gcc"],
-      "detail": "Compile all cpp files and run output executable in current folder"
+      "problemMatcher": ["$gcc"]
     }
   ]
 }
