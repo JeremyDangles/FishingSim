@@ -10,7 +10,14 @@ Player::Player(const std::string& name, int startingMoney)
 
 void Player::addFish(const Fish& fish)
 {
-    catchBag.push_back(fish);
+    if (fish.getSpecies() != "None")
+    {
+        catchBag.push_back(fish);
+    }
+    else
+    {
+        return;
+    }
 }
 
 int Player::getMoney() const
@@ -26,11 +33,25 @@ void Player::addMoney(int amount)
 void Player::display() const
 {
     std::cout << "Name: " << name << std::endl;
-    std::cout << "Money: " << money << std::endl;
+    std::cout << "Money: $" << money << std::endl;
     
     std::cout << "Fish Caught: " << std::endl;
     for (int i = 0; i < catchBag.size(); i++)
     {
         std::cout << catchBag[i].getSpecies() << ": $" << catchBag[i].getPrice() << std::endl;
+    }
+}
+
+int Player::getCatchBagSize()
+{
+    return catchBag.size();
+}
+
+void Player::sellFish(int index)
+{
+    if (index >= 0 && index < catchBag.size())
+    {
+        money += catchBag[index].getPrice();
+        catchBag.erase(catchBag.begin() + index);
     }
 }

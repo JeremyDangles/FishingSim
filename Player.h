@@ -17,4 +17,6 @@ class Player
         int getMoney() const;
         void addMoney(int amount);
         void display() const;
+        int getCatchBagSize();
+        void sellFish(int index);
 };

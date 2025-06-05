@@ -7,7 +7,7 @@
       "command": "bash",
       "args": [
         "-c",
-        "g++ ${workspaceFolder}/*.cpp -o ${workspaceFolder}/output && ${workspaceFolder}/output"
+        "g++ ${workspaceFolder}/*.cpp -o ${workspaceFolder}/FishingSim && ${workspaceFolder}/FishingSim"
       ],
       "group": {
         "kind": "build",
