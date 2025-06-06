@@ -8,7 +8,7 @@
       "args": [
         "${workspaceFolder}/*.cpp",
         "-o",
-        "${workspaceFolder}/FishingSim",
+        "${workspaceFolder}/main",
         "-std=c++17",
         "-I/usr/local/include",
         "-L/usr/local/lib",
