@@ -8,4 +8,5 @@ class UserInput
 {
     public:
         Vector2i getTileUnderMouse(int tileSize);
+        bool leftMouseClick();
 };

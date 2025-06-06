@@ -10,3 +10,8 @@ Vector2i UserInput::getTileUnderMouse(int tileSize)
 
     return { row, column };
 }
+
+bool leftMouseClick()
+{
+    return IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+}
