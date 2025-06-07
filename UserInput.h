@@ -7,11 +7,11 @@
 class UserInput
 {
     public:
-        Vector2i getTileUnderMouse(int tileSize);
-        bool leftMouseClick();
-        
-        bool keyPressed_W();
-        bool keyPressed_A();
-        bool keyPressed_S();
-        bool keyPressed_D();
+        Vector2i getTileUnderMouse(int tileSize) const;
+        bool leftMouseClick() const;
+
+        bool keyPressed_W() const;
+        bool keyPressed_A() const;
+        bool keyPressed_S() const;
+        bool keyPressed_D() const;
 };

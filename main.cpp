@@ -9,6 +9,7 @@
 #include "TileMapRenderer.h"
 #include <iostream>
 #include "PlayerRenderer.h"
+#include "PlayerMovement.h"
 
 
 Color background = { 0, 50, 80, 255};
@@ -16,7 +17,7 @@ Color background = { 0, 50, 80, 255};
 int main()
 {
     InitWindow(768, 608, "FishingSim");
-    SetTargetFPS(60);
+   // SetTargetFPS(60);
 
     TileMap map(19, 24, 32);
 
@@ -59,22 +60,19 @@ int layout[19][24] = {
     Player player(std::string("Pete"), 0);
     PlayerRenderer playerRenderer;
     playerRenderer.loadTextures();
-    
+    PlayerMovement playerMovement;
 
     while (!WindowShouldClose())
     {
-        Vector2i currentTile = input.getTileUnderMouse(map.getTileSize());
-        //std::cout << "x: " << currentTile.x << "\ny: " << currentTile.y << std::endl;
-
-        //std::cout << "ID: " << map.getTile(currentTile.x, currentTile.y).getIsWalkable() << std::endl;
+        //Vector2i currentTile = input.getTileUnderMouse(map.getTileSize());
+        playerMovement.handleMovement(player, map, input);
+       
         BeginDrawing();
             ClearBackground(MAROON);
-            //DrawText("TEST", 360, 300, 30, WHITE);
-
             mapRenderer.drawTiles();
-            //mapRenderer.drawGrid();
-            
+            mapRenderer.drawGrid();
             playerRenderer.drawSprite(player);
+            DrawFPS(50,50);
 
         EndDrawing();
         

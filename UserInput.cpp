@@ -1,7 +1,7 @@
 // UserInput.cpp
 #include "UserInput.h"
 
-Vector2i UserInput::getTileUnderMouse(int tileSize)
+Vector2i UserInput::getTileUnderMouse(int tileSize) const
 {
     Vector2 mouse = GetMousePosition();
 
@@ -11,27 +11,27 @@ Vector2i UserInput::getTileUnderMouse(int tileSize)
     return { row, column };
 }
 
-bool UserInput::leftMouseClick()
+bool UserInput::leftMouseClick() const
 {
     return IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
 }
 
-bool UserInput::keyPressed_W()
+bool UserInput::keyPressed_W() const
 {
     return IsKeyPressed(KEY_W);
 }
 
-bool UserInput::keyPressed_A()
+bool UserInput::keyPressed_A() const
 {
     return IsKeyPressed(KEY_A);
 }
 
-bool UserInput::keyPressed_S()
+bool UserInput::keyPressed_S() const
 {
     return IsKeyPressed(KEY_S);
 }
 
-bool UserInput::keyPressed_D()
+bool UserInput::keyPressed_D() const
 {
     return IsKeyPressed(KEY_D);
 }
