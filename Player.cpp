@@ -3,10 +3,7 @@
 #include <iostream>
 
 Player::Player(const std::string& name, int startingMoney)
-{
-    this->name = name;
-    this->money = startingMoney;
-}
+    : name(name), money(startingMoney), position(12, 8) {} // creates player object at 0, 0
 
 void Player::addFish(const Fish& fish)
 {
@@ -54,4 +51,14 @@ void Player::sellOneFish(int index)
         money += catchBag[index].getPrice();
         catchBag.erase(catchBag.begin() + index);
     }
+}
+
+Vector2i Player::getPosition() const
+{
+    return position;
+}
+
+void Player::setPosition(const Vector2i& newPosition)
+{
+    position = newPosition;
 }

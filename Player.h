@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Fish.h"
+#include "Vector2i.h"
 
 class Player
 {
@@ -10,6 +11,7 @@ class Player
         std::string name;
         int money;
         std::vector<Fish> catchBag;
+        Vector2i position;
 
     public:
         Player(const std::string& name, int startingMoney);
@@ -19,4 +21,6 @@ class Player
         void display() const;
         int getCatchBagSize();
         void sellOneFish(int index);
+        Vector2i getPosition() const;
+        void setPosition(const Vector2i& newPosition);
 };

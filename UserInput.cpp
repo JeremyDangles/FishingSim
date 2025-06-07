@@ -11,7 +11,27 @@ Vector2i UserInput::getTileUnderMouse(int tileSize)
     return { row, column };
 }
 
-bool leftMouseClick()
+bool UserInput::leftMouseClick()
 {
     return IsMouseButtonPressed(MOUSE_BUTTON_LEFT);
+}
+
+bool UserInput::keyPressed_W()
+{
+    return IsKeyPressed(KEY_W);
+}
+
+bool UserInput::keyPressed_A()
+{
+    return IsKeyPressed(KEY_A);
+}
+
+bool UserInput::keyPressed_S()
+{
+    return IsKeyPressed(KEY_S);
+}
+
+bool UserInput::keyPressed_D()
+{
+    return IsKeyPressed(KEY_D);
 }
