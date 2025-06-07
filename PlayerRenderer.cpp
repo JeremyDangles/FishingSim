@@ -3,12 +3,11 @@
 #include "raylib.h"
 #include "Vector2i.h"
 
-void PlayerRenderer::drawSprite(const Player& player)
+void PlayerRenderer::drawSpriteAt(Vector2 pixelPosition)
 {
-    Vector2i position = player.getPosition();
-    int size = 32;
-
-    DrawTexture(sprite, position.x * size, position.y * size, WHITE);
+    int tileSize = 32;
+    float yOffset = tileSize / 4.0f;
+    DrawTexture(sprite, static_cast<int>(pixelPosition.x), static_cast<int>(pixelPosition.y - yOffset), WHITE);
 }
 
 void PlayerRenderer::loadTextures()

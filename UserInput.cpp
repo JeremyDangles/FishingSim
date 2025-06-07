@@ -8,7 +8,7 @@ Vector2i UserInput::getTileUnderMouse(int tileSize) const
     int column = static_cast<int>(mouse.x) / tileSize;
     int row = static_cast<int>(mouse.y) / tileSize;
 
-    return { row, column };
+    return { column, row };
 }
 
 bool UserInput::leftMouseClick() const
@@ -18,20 +18,20 @@ bool UserInput::leftMouseClick() const
 
 bool UserInput::keyPressed_W() const
 {
-    return IsKeyPressed(KEY_W);
+    return IsKeyDown(KEY_W);
 }
 
 bool UserInput::keyPressed_A() const
 {
-    return IsKeyPressed(KEY_A);
+    return IsKeyDown(KEY_A);
 }
 
 bool UserInput::keyPressed_S() const
 {
-    return IsKeyPressed(KEY_S);
+    return IsKeyDown(KEY_S);
 }
 
 bool UserInput::keyPressed_D() const
 {
-    return IsKeyPressed(KEY_D);
+    return IsKeyDown(KEY_D);
 }

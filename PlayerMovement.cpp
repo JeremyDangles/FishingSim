@@ -1,30 +1,66 @@
 // PlayerMovement.cpp
 #include "PlayerMovement.h"
+#include <cmath>
 
-void PlayerMovement::handleMovement(Player& player, TileMap& map, const UserInput& input)
+void PlayerMovement::handleInput(Player& player, TileMap& map, const UserInput& input)
 {
-    Vector2i playerPosition = player.getPosition();
+    if (isMoving) return;
 
-    if (input.keyPressed_W())
+    Vector2i direction = {0, 0};
+
+    if (input.keyPressed_W()) direction.y = -1;
+    if (input.keyPressed_S()) direction.y = 1;
+    if (input.keyPressed_A()) direction.x = -1;
+    if (input.keyPressed_D()) direction.x = 1;
+
+    if (direction.x != 0 || direction.y != 0)
     {
-        playerPosition.y -= 1;
+        // Normalize direction vector
+        float length = sqrtf(direction.x * direction.x + direction.y * direction.y);
+        float normX = direction.x / length;
+        float normY = direction.y / length;
+
+        Vector2i currentTile = player.getTilePosition();
+        Vector2i nextTile = { currentTile.x + direction.x, currentTile.y + direction.y };
+
+        // Diagonal walkability checks here (optional)
+
+        if (map.getTile(nextTile.y, nextTile.x).getIsWalkable())
+        {
+            player.setTilePosition(nextTile);
+            moveDirection = { normX, normY };
+            targetPixelPosition = 
+            {
+                nextTile.x * static_cast<float>(tileSize),
+                nextTile.y * static_cast<float>(tileSize)
+            };
+            isMoving = true;
+        }
     }
-    if (input.keyPressed_S())
+}
+
+
+void PlayerMovement::update(Player& player, float deltaTime)
+{
+    if (!isMoving)
     {
-        playerPosition.y += 1;
-    }
-    if (input.keyPressed_A())
-    {
-        playerPosition.x -= 1;
-    }
-    if (input.keyPressed_D())
-    {
-        playerPosition.x += 1;
+        return;
     }
 
-    if (map.getTile(playerPosition.y, playerPosition.x).getIsWalkable())
+    Vector2 currentPixelPosition = player.getPixelPosition();
+    Vector2 velocity = { moveDirection.x * moveSpeed * deltaTime, moveDirection.y * moveSpeed * deltaTime };
+    Vector2 nextPosition = { currentPixelPosition.x + velocity.x, currentPixelPosition.y + velocity.y };
+
+    bool arrivedX = (moveDirection.x > 0 && nextPosition.x >= targetPixelPosition.x) || (moveDirection.x < 0 && nextPosition.x <= targetPixelPosition.x);
+    bool arrivedY = (moveDirection.y > 0 && nextPosition.y >= targetPixelPosition.y) || (moveDirection.y < 0 && nextPosition.y <= targetPixelPosition.y);
+
+    if ((moveDirection.x != 0 && arrivedX) || moveDirection.y != 0 && arrivedY)
     {
-        player.setPosition(playerPosition);
+        player.setPixelPosition(targetPixelPosition);
+        isMoving = false;
     }
-    
+    else
+    {
+        player.setPixelPosition(nextPosition);
+    }
 }

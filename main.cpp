@@ -64,14 +64,17 @@ int layout[19][24] = {
 
     while (!WindowShouldClose())
     {
+        float deltaTime = GetFrameTime();
+
         //Vector2i currentTile = input.getTileUnderMouse(map.getTileSize());
-        playerMovement.handleMovement(player, map, input);
+        playerMovement.handleInput(player, map, input);
+        playerMovement.update(player, deltaTime);
        
         BeginDrawing();
             ClearBackground(MAROON);
             mapRenderer.drawTiles();
-            mapRenderer.drawGrid();
-            playerRenderer.drawSprite(player);
+            //mapRenderer.drawGrid();
+            playerRenderer.drawSpriteAt(player.getPixelPosition());
             DrawFPS(50,50);
 
         EndDrawing();

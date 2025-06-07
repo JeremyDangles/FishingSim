@@ -10,7 +10,7 @@ class PlayerRenderer
         bool textureLoaded = false;
 
     public:
-        void drawSprite(const Player& player);
+        void drawSpriteAt(Vector2 pixelPosition);
         void loadTextures();
         void unloadTextures();
 };

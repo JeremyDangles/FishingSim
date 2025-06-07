@@ -3,7 +3,10 @@
 #include <iostream>
 
 Player::Player(const std::string& name, int startingMoney)
-    : name(name), money(startingMoney), position(12, 8) {} // creates player object at 0, 0
+    : name(name), money(startingMoney), tilePosition(12, 8) 
+    {
+        pixelPosition = { tilePosition.x * 32.0f, tilePosition.y * 32.0f };
+    } 
 
 void Player::addFish(const Fish& fish)
 {
@@ -53,12 +56,22 @@ void Player::sellOneFish(int index)
     }
 }
 
-Vector2i Player::getPosition() const
+Vector2i Player::getTilePosition() const
 {
-    return position;
+    return tilePosition;
 }
 
-void Player::setPosition(const Vector2i& newPosition)
+void Player::setTilePosition(const Vector2i& newPosition)
 {
-    position = newPosition;
+    tilePosition = newPosition;
+}
+
+Vector2 Player::getPixelPosition() const
+{
+    return pixelPosition;
+}
+
+void Player::setPixelPosition(Vector2 newPosition)
+{
+    pixelPosition = newPosition;
 }
